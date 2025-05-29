@@ -1,0 +1,121 @@
+{% extends 'blogs/base.html' %}
+{% load static %}
+
+{% block title %}BlogSphere - Home{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+    <h1><i class="bi bi-house-door"></i> Welcome to BlogSphere</h1>
+    <p>Explore the latest blog posts below!</p>
+
+    <!-- Search Bar -->
+    <form method="get" action="{% url 'home' %}" class="mb-4">
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" name="search" class="form-control" placeholder="Search posts..." value="{{ search_query }}">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Search</button>
+        </div>
+    </form>
+
+    <h2><i class="bi bi-fire"></i> Trending Posts</h2>
+    {% if trending_posts %}
+        <div class="row">
+            {% for post in trending_posts %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="max-height: 200px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="bi bi-bookmark"></i> {{ post.title }}</h5>
+                            <p class="card-text">{{ post.content|truncatewords:50 }}</p>
+                            <p class="card-text"><i class="bi bi-tags"></i> Category: {{ post.category }} | Tags: {{ post.tags }}</p>
+                            <p class="card-text"><small><i class="bi bi-person"></i> Posted by <a href="{% url 'profile' post.user.username %}" class="text-warning">{{ post.user.username }}</a> on <i class="bi bi-calendar"></i> {{ post.created_at }}</small></p>
+                            <p class="card-text"><i class="bi bi-heart-fill"></i> Likes: {{ post.like_set.count }}</p>
+                            <p>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'like_post' post.id %}" class="btn btn-sm btn-primary">
+                                        <i class="bi {% if post.liked_by_user %}bi-heart-fill{% else %}bi-heart{% endif %}"></i> {% if post.liked_by_user %}Unlike{% else %}Like{% endif %}
+                                    </a>
+                                    <a href="{% url 'add_comment' post.id %}" class="btn btn-sm btn-secondary"><i class="bi bi-chat"></i> Comment</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="btn btn-sm btn-primary" onclick="alert('Pehle login karna padega.')"><i class="bi bi-heart"></i> Like</a>
+                                    <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" onclick="alert('Pehle login karna padega.')"><i class="bi bi-chat"></i> Comment</a>
+                                {% endif %}
+                            </p>
+                            <h6><i class="bi bi-chat-text"></i> Comments:</h6>
+                            {% for comment in post.comment_set.all %}
+                                <p class="comment"><strong>{{ comment.user.username }}</strong>: {{ comment.text }} <small>(<i class="bi bi-clock"></i> {{ comment.created_at }})</small></p>
+                            {% endfor %}
+                            {% if user.is_authenticated %}
+                                <form method="post" action="{% url 'add_comment' post.id %}">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="bi bi-chat"></i></span>
+                                        <input type="text" name="text" class="form-control" placeholder="Add a comment..." required>
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Post</button>
+                                    </div>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No trending posts yet.</p>
+    {% endif %}
+
+    <h2><i class="bi bi-clock-history"></i> Recent Posts</h2>
+    {% if search_query %}
+        <p>Showing results for: <strong>{{ search_query }}</strong></p>
+    {% endif %}
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="max-height: 200px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-bookmark"></i> {{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|truncatewords:50 }}</p>
+                        <p class="card-text"><i class="bi bi-tags"></i> Category: {{ post.category }} | Tags: {{ post.tags }}</p>
+                        <p class="card-text"><small><i class="bi bi-person"></i> Posted by <a href="{% url 'profile' post.user.username %}" class="text-warning">{{ post.user.username }}</a> on <i class="bi bi-calendar"></i> {{ post.created_at }}</small></p>
+                        <p class="card-text"><i class="bi bi-heart-fill"></i> Likes: {{ post.like_set.count }}</p>
+                        <p>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'like_post' post.id %}" class="btn btn-sm btn-primary">
+                                    <i class="bi {% if post.liked_by_user %}bi-heart-fill{% else %}bi-heart{% endif %}"></i> {% if post.liked_by_user %}Unlike{% else %}Like{% endif %}
+                                </a>
+                                <a href="{% url 'add_comment' post.id %}" class="btn btn-sm btn-secondary"><i class="bi bi-chat"></i> Comment</a>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="btn btn-sm btn-primary" onclick="alert('Pehle login karna padega.')"><i class="bi bi-heart"></i> Like</a>
+                                <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" onclick="alert('Pehle login karna padega.')"><i class="bi bi-chat"></i> Comment</a>
+                            {% endif %}
+                        </p>
+                        <h6><i class="bi bi-chat-text"></i> Comments:</h6>
+                        {% for comment in post.comment_set.all %}
+                            <p class="comment"><strong>{{ comment.user.username }}</strong>: {{ comment.text }} <small>(<i class="bi bi-clock"></i> {{ comment.created_at }})</small></p>
+                        {% endfor %}
+                        {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'add_comment' post.id %}">
+                                {% csrf_token %}
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text"><i class="bi bi-chat"></i></span>
+                                    <input type="text" name="text" class="form-control" placeholder="Add a comment..." required>
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Post</button>
+                                </div>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No posts found. {% if search_query %}Try a different search term.{% else %}Be the first to create one!{% endif %}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

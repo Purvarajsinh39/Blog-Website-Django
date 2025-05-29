@@ -1,0 +1,29 @@
+{% extends 'blogs/base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile - BlogSphere{% endblock %}
+
+{% block content %}
+<div class="mb-5">
+    <h2><i class="bi bi-pencil-square"></i> Edit Profile</h2>
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="bio" class="form-label"><i class="bi bi-info-circle"></i> Bio</label>
+                    <textarea name="bio" id="bio" class="form-control" rows="3">{{ profile.bio }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="profile_picture" class="form-label"><i class="bi bi-image"></i> Profile Picture</label>
+                    <input type="file" name="profile_picture" id="profile_picture" class="form-control">
+                    {% if profile.profile_picture %}
+                        <p>Current Picture: <img src="{{ profile.profile_picture.url }}" alt="Current Picture" style="max-height: 100px; margin-top: 10px;"></p>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
