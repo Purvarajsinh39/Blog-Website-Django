@@ -23,6 +23,7 @@ BlogSphere is a sleek and modern blogging platform built as a vacation project w
 ## Default Users
 The platform includes the following pre-created users for testing:
 - **User IDs and Passwords**:
+  - Demo (Password :Blog@123) 
   - AlexHarper (Password: Blog@123)
   - SophieLaurent (Password: Blog@123)
   - LiamCarter (Password: Blog@123)
