@@ -105,40 +105,6 @@ Follow these steps to set up and run BlogSphere on your local machine:
    ```
    Open your browser and go to `http://127.0.0.1:8000/` to see the BlogSphere homepage.
 
-blog_project/
-├── blogsphere/              # Main Django project directory
-│   ├── __init__.py
-│   ├── asgi.py
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── blogs/                   # Blog app directory
-│   ├── migrations/          # Database migrations
-│   ├── templates/blogs/     # HTML templates
-│   │   ├── base.html
-│   │   ├── home.html
-│   │   ├── profile.html
-│   │   ├── login.html
-│   │   ├── signup.html
-│   │   ├── create_post.html
-│   │   ├── edit_post.html
-│   │   └── edit_profile.html
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── models.py
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-├── media/                   # Uploaded images
-├── static/                  # Custom static files
-│   └── css/
-│       └── style.css
-├── staticfiles/             # Collected static files
-├── db.sqlite3               # SQLite database
-├── manage.py
-└── README.md
-
 ## Screenshots
 > ⚠️ All screenshots saved in the `images/` folder of your project directory.
 
