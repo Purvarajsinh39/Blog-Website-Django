@@ -90,8 +90,8 @@
                                 </a>
                                 <a href="{% url 'add_comment' post.id %}" class="btn btn-sm btn-secondary"><i class="bi bi-chat"></i> Comment</a>
                             {% else %}
-                                <a href="{% url 'login' %}" class="btn btn-sm btn-primary" onclick="alert('Pehle login karna padega.')"><i class="bi bi-heart"></i> Like</a>
-                                <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" onclick="alert('Pehle login karna padega.')"><i class="bi bi-chat"></i> Comment</a>
+                                <a href="{% url 'login' %}" class="btn btn-sm btn-primary" onclick="alert('You Have To Login First.)"><i class="bi bi-heart"></i> Like</a>
+                                <a href="{% url 'login' %}" class="btn btn-sm btn-secondary" onclick="alert('You Have To Login First.')"><i class="bi bi-chat"></i> Comment</a>
                             {% endif %}
                         </p>
                         <h6><i class="bi bi-chat-text"></i> Comments:</h6>
