@@ -3,6 +3,37 @@
 ## Overview
 BlogSphere is a sleek and modern blogging platform built as a vacation project while learning Django. It allows users to create, edit, and share blog posts, manage their profiles, and engage with the community through likes and comments. The project features a stylish dark theme with gradient elements, glassmorphism effects, and smooth animations for an enhanced user experience.
 
+## Screenshots
+> ⚠️ All screenshots saved in the `images/` folder of your project directory.
+
+### 1️⃣ Home
+![Home](images/home.png)
+
+### 2️⃣ Search
+![Search](images/search.png)
+
+### 3️⃣ Login
+![Login](images/login.png)
+
+### 4️⃣ Signup
+![Signup](images/signup.png)  
+
+### 5️⃣ Profile
+![Profile](images/profile_2.png)
+![Profile_Main](images/profile_main.png)
+
+### 6️⃣ Edit Profile
+![Edit_Profile](images/edit_profile.png)  
+
+### 7️⃣ Create Post
+![New_Post](images/new_post.png)
+
+### 8️⃣ Edit Post 
+![Edit_Post](images/edit_post.png)
+
+### 9️⃣  Delete Post
+![Delete_Post](images/delete_post.png)
+
 ## Features
 - **User Authentication**: Secure signup, login, and logout functionality.
 - **Blog Management**: Create, edit, and delete blog posts with images, categories, and tags.
@@ -105,38 +136,6 @@ Follow these steps to set up and run BlogSphere on your local machine:
    python manage.py runserver
    ```
    Open your browser and go to `http://127.0.0.1:8000/` to see the BlogSphere homepage.
-
-## Screenshots
-> ⚠️ All screenshots saved in the `images/` folder of your project directory.
-
-### 1️⃣ Home
-![Home](images/home.png)
-
-### 2️⃣ Search
-![Search](images/search.png)
-
-### 3️⃣ Login
-![Login](images/login.png)
-
-### 4️⃣ Signup
-![Signup](images/signup.png)  
-
-### 5️⃣ Profile
-![Profile](images/profile_2.png)
-![Profile_Main](images/profile_main.png)
-
-### 6️⃣ Edit Profile
-![Edit_Profile](images/edit_profile.png)  
-
-### 7️⃣ Create Post
-![New_Post](images/new_post.png)
-
-### 8️⃣ Edit Post 
-![Edit_Post](images/edit_post.png)
-
-### 9️⃣  Delete Post
-![Delete_Post](images/delete_post.png)
-
 
 ## Troubleshooting
 - **Static Files Not Loading**:
